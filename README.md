@@ -6,18 +6,18 @@ Discover the world in images, thanks to Webba Wallpapers change your background 
 
 __<br>
 
-This project is open source and work with a web server, if you wants to use it make shure to change the links to your server.
+This project is open source and works with a web server, if you want to use it, make sure you change the links to your server.
 
-Pictures are anotates likes this on the serveur :
+The images are named like this on the server :
 
-01 .jpg <br>
-02 .jpg <br>
-03 .jpg <br>
-04 .jpg <br>
-05 .jpg <br>
-06 .jpg <br>
-... <br>
+01 .jpg<br>
+02 .jpg<br>
+03 .jpg<br>
+04 .jpg<br>
+05 .jpg<br>
+06 .jpg<br>
+...<br>
 31 .jpg
 
-<b>Make sure to keep the space after the number.</b>
+<b>Please make sure to keep the space after the number.</b>
 
