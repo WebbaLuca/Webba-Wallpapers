@@ -29,6 +29,7 @@ The images are named like this on the server :
 
 <a href="https://github.com/WebbaLuca/Webba-Updater-for-Wallpapers/tree/master">Link to the Webba Updater for this project</a>
 
+![updater](https://user-images.githubusercontent.com/81247068/152611105-15f6a7d1-75f4-4297-a5af-1cf16b8918c0.png)
 
 <i>The project uses Visual Studio Community 2022 and only runs on Windows x32 and x64</i>
 
