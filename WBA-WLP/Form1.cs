@@ -16,10 +16,11 @@ using Microsoft.Win32;
 
 namespace WBA_WLP
 {
+    
+
     public partial class Form1 : Form
     {
-
-        RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+        //RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
@@ -35,7 +36,7 @@ namespace WBA_WLP
         private void SetStartup()
         {
 
-            registryKey.SetValue("WBA-WLP", Application.ExecutablePath);
+            //registryKey.SetValue("WBA-WLP", Application.ExecutablePath);
 
         }
 
@@ -46,6 +47,44 @@ namespace WBA_WLP
 
             SetStartup();
 
+            //Version verification
+            String line;
+            try
+            {
+                WebClient client = new WebClient();
+                Stream stream = client.OpenRead("https://software.webba-creative.com/wallpapers/version.txt");
+                StreamReader sr = new StreamReader(stream);
+                line = sr.ReadLine();
+                while (line != null)
+                {
+                    Console.WriteLine("Actual Version " + line);
+
+                    //If download version == last version
+                    if (line == "1.1.1")
+                    {
+                        //Don't open Update manager
+                        Console.WriteLine("App up to date");
+                    }
+                    else
+                    {
+                        //Open Update manager
+                        System.Diagnostics.Process.Start(Application.StartupPath + "/Webba updater.exe");
+                        Console.WriteLine("Update available");
+                    }
+
+                    line = sr.ReadLine();
+
+                }
+                sr.Close();               
+
+                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+
+            
 
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 35, 35));
@@ -282,9 +321,6 @@ namespace WBA_WLP
                 Console.WriteLine(s.Message);
             }
 
-
-
-
             string localFilename = @"C:/Webba Wallpapers/picsOfTheDay.png";
             using (WebClient client = new WebClient())
             {
@@ -299,6 +335,51 @@ namespace WBA_WLP
         {
             Show();
             this.WindowState = FormWindowState.Normal;
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            //Version verification
+            String line;
+            try
+            {
+                WebClient client = new WebClient();
+                Stream stream = client.OpenRead("https://software.webba-creative.com/wallpapers/version.txt");
+                StreamReader sr = new StreamReader(stream);
+                line = sr.ReadLine();
+                while (line != null)
+                {
+                    Console.WriteLine("Actual Version " + line);
+
+                    //If download version == last version
+                    if (line == "1.1.1")
+                    {
+                        //Don't open Update manager
+                        Console.WriteLine("App up to date");
+                    }
+                    else
+                    {
+                        //Open Update manager
+                        System.Diagnostics.Process.Start(Application.StartupPath + "/Webba updater.exe");
+                        Console.WriteLine("Update available");
+                    }
+
+                    line = sr.ReadLine();
+
+                }
+                sr.Close();
+
+
+            }
+            catch
+            {
+                Console.WriteLine("Updated");
+            }
         }
     }
 }

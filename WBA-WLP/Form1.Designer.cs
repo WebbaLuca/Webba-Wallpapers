@@ -43,6 +43,8 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.timer3 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -169,15 +171,34 @@
             // timer2
             // 
             this.timer2.Enabled = true;
-            this.timer2.Interval = 7200000;
+            this.timer2.Interval = 14400000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label2.Location = new System.Drawing.Point(59, 344);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(170, 15);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Webba Creative Technologies";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // timer3
+            // 
+            this.timer3.Enabled = true;
+            this.timer3.Interval = 14400000;
+            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
-            this.ClientSize = new System.Drawing.Size(291, 353);
+            this.ClientSize = new System.Drawing.Size(291, 373);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -213,6 +234,8 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Timer timer3;
     }
 }
 
