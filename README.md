@@ -21,5 +21,7 @@ The images are named like this on the server :
 
 <b>Please make sure to keep the space after the number.</b>
 
+Link to the Webba Updater for this project : https://github.com/WebbaLuca/Webba-Updater-for-Wallpapers/tree/master
+
 
 <i>The project uses Visual Studio Community 2022 and only runs on Windows x32 and x64</i>
