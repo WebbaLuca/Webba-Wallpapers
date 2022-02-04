@@ -4,6 +4,10 @@
 
 Discover the world in images, thanks to Webba Wallpapers change your background every day and discover new images.
 
+
+<a href="https://webba-creative.com/en/assets/wallpapers/Webba%20Wallpapers%20Setup.exe">Download Setup</a>
+
+
 __<br>
 
 This project is open source and works with a web server, if you want to use it, make sure you change the links to your server.
@@ -21,7 +25,10 @@ The images are named like this on the server :
 
 <b>Please make sure to keep the space after the number.</b>
 
-Link to the Webba Updater for this project : https://github.com/WebbaLuca/Webba-Updater-for-Wallpapers/tree/master
+<a href="https://github.com/WebbaLuca/Webba-Updater-for-Wallpapers/tree/master">Link to the Webba Updater for this project</a>
 
 
 <i>The project uses Visual Studio Community 2022 and only runs on Windows x32 and x64</i>
+
+
+Webba Creative Technologies © 2022
