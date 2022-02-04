@@ -18,6 +18,9 @@ namespace WBA_WLP
 {
     public partial class Form1 : Form
     {
+
+        RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -31,29 +34,25 @@ namespace WBA_WLP
 
         private void SetStartup()
         {
-            RegistryKey rk = Registry.CurrentUser.OpenSubKey
-                ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
-            rk.SetValue("WBA-WLP", Application.ExecutablePath);
+            registryKey.SetValue("WBA-WLP", Application.ExecutablePath);
 
         }
 
         public Form1()
         {
 
-
             InitializeComponent();
 
             SetStartup();
 
 
-            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            key.SetValue("WBA-WLP", Application.ExecutablePath);
-
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 35, 35));
 
             string picsOfTheDay = "https://software.webba-creative.com/wallpapers/" + DateTime.Now.ToString("d tt") + ".jpg";
+
+            Console.WriteLine(DateTime.Now.ToString("d tt"));
 
             string root = @"C:\Webba Wallpapers\";
 
