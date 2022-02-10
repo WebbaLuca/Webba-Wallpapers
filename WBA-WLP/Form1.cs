@@ -357,7 +357,7 @@ namespace WBA_WLP
                     Console.WriteLine("Actual Version " + line);
 
                     //If download version == last version
-                    if (line == "1.1.1")
+                    if (line == "1.1.2")
                     {
                         //Don't open Update manager
                         Console.WriteLine("App up to date");
@@ -380,6 +380,39 @@ namespace WBA_WLP
             {
                 Console.WriteLine("Updated");
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel1_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        Point lastPoint;
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
+      
         }
     }
 }
