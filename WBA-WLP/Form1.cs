@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Net;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Permissions;
@@ -40,6 +41,15 @@ namespace WBA_WLP
 
         }
 
+        public void ExecuteAsAdmin(string fileName)
+        {
+            Process proc = new Process();
+            proc.StartInfo.FileName = fileName;
+            proc.StartInfo.UseShellExecute = true;
+            proc.StartInfo.Verb = "runas";
+            proc.Start();
+        }
+
         public Form1()
         {
 
@@ -60,7 +70,7 @@ namespace WBA_WLP
                     Console.WriteLine("Actual Version " + line);
 
                     //If download version == last version
-                    if (line == "1.1.1")
+                    if (line.Contains("1.1.2"))
                     {
                         //Don't open Update manager
                         Console.WriteLine("App up to date");
@@ -68,7 +78,8 @@ namespace WBA_WLP
                     else
                     {
                         //Open Update manager
-                        System.Diagnostics.Process.Start(Application.StartupPath + "/Webba updater.exe");
+                        //System.Diagnostics.Process.Start(Application.StartupPath + "/Webba updater.exe");
+                        ExecuteAsAdmin(Application.StartupPath + "/Webba updater.exe");
                         Console.WriteLine("Update available");
                     }
 
@@ -84,7 +95,6 @@ namespace WBA_WLP
                 Console.WriteLine("Exception: " + e.Message);
             }
 
-            
 
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 35, 35));
@@ -357,7 +367,7 @@ namespace WBA_WLP
                     Console.WriteLine("Actual Version " + line);
 
                     //If download version == last version
-                    if (line == "1.1.2")
+                    if (line.Contains("1.1.2"))
                     {
                         //Don't open Update manager
                         Console.WriteLine("App up to date");
