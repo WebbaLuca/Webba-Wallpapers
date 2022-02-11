@@ -14,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Security.Permissions;
 using Microsoft.Win32;
+using Webba_Wallpapers;
 
 namespace WBA_WLP
 {
@@ -21,6 +22,9 @@ namespace WBA_WLP
 
     public partial class Form1 : Form
     {
+
+        public string collection;
+
         //RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
@@ -96,10 +100,38 @@ namespace WBA_WLP
             }
 
 
+            //Recherche de la collection active
+            String ColLine;
+            try
+            {
+                WebClient client = new WebClient();
+                Stream stream = client.OpenRead(Application.StartupPath + "/activecollection.txt");
+                StreamReader sr = new StreamReader(stream);
+                ColLine = sr.ReadLine();
+                while (ColLine != null)
+                {
+                    Console.WriteLine("Actual Collection " + ColLine);
+
+                    collection = ColLine;
+
+                    ColLine = sr.ReadLine();
+
+                }
+                sr.Close();
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Exception: " + e.Message);
+            }
+
+
             this.FormBorderStyle = FormBorderStyle.None;
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 35, 35));
 
-            string picsOfTheDay = "https://software.webba-creative.com/wallpapers/" + DateTime.Now.ToString("d tt") + ".jpg";
+            //string picsOfTheDay = "https://software.webba-creative.com/wallpapers/" + DateTime.Now.ToString("d tt") + ".jpg";
+            string picsOfTheDay = "https://software.webba-creative.com/wallpapers/" + collection + "/01 .jpg";
 
             Console.WriteLine(DateTime.Now.ToString("d tt"));
 
@@ -216,17 +248,51 @@ namespace WBA_WLP
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Show();
-            this.WindowState = FormWindowState.Normal;
+            if(Form1.ActiveForm != null)
+            {
+                Show();
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                Hide();
+                notifyIcon.Visible = true;
+            }
+            
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Recherche de la collection active
+            String ColLine;
+            try
+            {
+                WebClient client = new WebClient();
+                Stream stream = client.OpenRead(Application.StartupPath + "/activecollection.txt");
+                StreamReader sr = new StreamReader(stream);
+                ColLine = sr.ReadLine();
+                while (ColLine != null)
+                {
+                    Console.WriteLine("Actual Collection " + ColLine);
+
+                    collection = ColLine;
+
+                    ColLine = sr.ReadLine();
+
+                }
+                sr.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception: " + ex.Message);
+            }
 
             Random r = new Random();
             int rInt = r.Next(0, 31); //for ints
 
-            string picsOfTheDay = "https://software.webba-creative.com/wallpapers/" + rInt + " .jpg";
+            string picsOfTheDay = "https://software.webba-creative.com/wallpapers/" + collection + "/01 .jpg";
 
             string root = @"C:\Webba Wallpapers\";
 
@@ -349,7 +415,7 @@ namespace WBA_WLP
 
         private void label2_Click(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Process.Start("https://webba-creative.com/en/index.html");
         }
 
         private void timer3_Tick(object sender, EventArgs e)
@@ -423,6 +489,39 @@ namespace WBA_WLP
                 this.Top += e.Y - lastPoint.Y;
             }
       
+        }
+
+        private void pJCroceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            collection = "PJ Croce";
+        }
+
+        private void webbaTechnologiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            collection = "Webba";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form collec = new Collections();
+            collec.Show();
+
+        }
+
+        private void pJCroceToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void collectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form collec = new Collections();
+
+            if(!collec.Visible)
+            {
+                collec.Show();
+            }
+            
         }
     }
 }
