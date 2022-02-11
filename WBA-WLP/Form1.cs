@@ -70,7 +70,7 @@ namespace WBA_WLP
                     Console.WriteLine("Actual Version " + line);
 
                     //If download version == last version
-                    if (line.Contains("1.1.2"))
+                    if (line.Contains("1.1.3"))
                     {
                         //Don't open Update manager
                         Console.WriteLine("App up to date");
@@ -367,7 +367,7 @@ namespace WBA_WLP
                     Console.WriteLine("Actual Version " + line);
 
                     //If download version == last version
-                    if (line.Contains("1.1.2"))
+                    if (line.Contains("1.1.3"))
                     {
                         //Don't open Update manager
                         Console.WriteLine("App up to date");
