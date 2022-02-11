@@ -349,7 +349,7 @@ namespace WBA_WLP
 
         private void label2_Click(object sender, EventArgs e)
         {
-
+            System.Diagnostics.Process.Start("https://webba-creative.com/en/index.html");
         }
 
         private void timer3_Tick(object sender, EventArgs e)
